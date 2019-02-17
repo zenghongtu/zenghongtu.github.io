@@ -1,4 +1,184 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Jason's Blog - 技术/思考/进阶]]></title><description><![CDATA[奋勇前行，有始有终。]]></description><link>https://zenghongtu.com</link><generator>RSS for Node</generator><lastBuildDate>Sun, 17 Feb 2019 17:05:11 GMT</lastBuildDate><item><title><![CDATA[一道 JavaScript 面试题的思考]]></title><description><![CDATA[前言：昨天在群里讨(jin)论(chui)技(niu)术(pi)，有位老铁发了一道他面的某公司面试题，顺手保存了。今早花了一点时间把这题做了出来，发现挺有意思的，决定在今天认真工（hua)作(shui…]]></description><link>https://zenghongtu.com/一道JavaScript面试题的思考/</link><guid isPermaLink="false">https://zenghongtu.com/一道JavaScript面试题的思考/</guid><pubDate>Thu, 31 Jan 2019 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;&lt;em&gt;前言：昨天在群里讨(jin)论(chui)技(niu)术(pi)，有位老铁发了一道他面的某公司面试题，顺手保存了。今早花了一点时间把这题做了出来，发现挺有意思的，决定在今天认真工（hua)作(shui)前，与大家分享我的解题方案和思考过程。&lt;/em&gt;&lt;/p&gt;
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Jason's Blog - 技术/思考/进阶]]></title><description><![CDATA[奋勇前行，有始有终。]]></description><link>https://zenghongtu.com</link><generator>RSS for Node</generator><lastBuildDate>Sun, 17 Feb 2019 18:24:34 GMT</lastBuildDate><item><title><![CDATA[使用Gatsby.js快速搭建静态博客并通过Travis CI轻松实现自动构建]]></title><description><![CDATA[前言：之前用 Hexo…]]></description><link>https://zenghongtu.com/使用Gatsby.js快速搭建静态博客并通过Travis CI轻松实现自动构建/</link><guid isPermaLink="false">https://zenghongtu.com/使用Gatsby.js快速搭建静态博客并通过Travis CI轻松实现自动构建/</guid><pubDate>Mon, 18 Feb 2019 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;前言：之前用 Hexo 搭建的博客，稀稀散散的写一些时间，后来就懒了没有坚持下来，中断了足足一年没写了。这几天心血来潮，决定重新搭建一个，一是监督自己完成制定的计划（每周一篇，每月五篇文章），二是与各位老铁分享学习心得，三则是建立自己的知识体系，毕竟好记性不如烂笔头嘛。昨天花了一天多的时间完成了现在这个博客的模样，为什么搭个博客要花这么久，因为这里面涉及到了一些我之前没有接触过的技术，比如GraphQL、Travis CI，我都有认真的去学习了一下，还有就是把之前在 Hexo 上的几篇修改了一下添加到现在这个博客中了。接下来进入主题。&lt;/p&gt;
+&lt;h2&gt;主题安装&lt;/h2&gt;
+&lt;p&gt;为什么是主题安装呢？
+因为这个主题已经帮我们打包搞定了我们需要的包括了分类、分页等等功能，直接安装它即可&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;npx gatsby new my-blog-starter https://github.com/gatsbyjs/gatsby-starter-blog
+&lt;span class=&quot;token function&quot;&gt;cd&lt;/span&gt; my-blog-starter/
+gatsby develop&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;然后我们可以看到如下内容：&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;You can now view gatsby-starter-hero-blog &lt;span class=&quot;token keyword&quot;&gt;in&lt;/span&gt; the browser.
+
+  http://localhost:8000/
+
+View GraphiQL, an in-browser IDE, to explore your site&apos;s data and schema
+
+  http://localhost:8000/___graphql
+
+Note that the development build is not optimized.
+To create a production build, use gatsby build&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;现在就可以访问&lt;code class=&quot;language-text&quot;&gt;http://localhost:8000/&lt;/code&gt;来访问博客&lt;/p&gt;
+&lt;p&gt;更多内容可以查看这里&lt;a href=&quot;https://github.com/greglobinski/gatsby-starter-hero-blog&quot;&gt;gatsby-starter-hero-blog&lt;/a&gt;&lt;/p&gt;
+&lt;h2&gt;修改配置&lt;/h2&gt;
+&lt;p&gt;可以正常启动后，我们就可以开始修改配置了。&lt;/p&gt;
+&lt;p&gt;在&lt;code class=&quot;language-text&quot;&gt;content&lt;/code&gt;文件夹中进行配置，具体如下：&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;├── meta &lt;span class=&quot;token comment&quot;&gt;# 存放 meta 相关文件&lt;/span&gt;
+│   └── config.js  &lt;span class=&quot;token comment&quot;&gt;# 网站信息、作者信息等设置&lt;/span&gt;
+├── pages &lt;span class=&quot;token comment&quot;&gt;# 可自定义的添加页面，支持 HTML 标签&lt;/span&gt;
+│   ├── 1--about
+│   │   └── index.md
+│   ├── 2--starters
+│   │   ├── gatsby-starter-personal-blog.png
+│   │   ├── gatsby-starter-simple-landing.png
+│   │   └── index.md
+│   ├── 3--front-end-dev
+│   │   └── index.md
+│   ├── 4--privacy
+│   │   └── index.md
+│   ├── 5--terms
+│   │   └── index.md
+│   └── success
+│       └── index.md
+├── parts  &lt;span class=&quot;token comment&quot;&gt;# 区块，相当于组件&lt;/span&gt;
+│   ├── author.md
+│   └── footnote.md
+└── posts &lt;span class=&quot;token comment&quot;&gt;# 存放文章&lt;/span&gt;
+    ├── 2017-10-01--two-things-are-infinite  &lt;span class=&quot;token comment&quot;&gt;# 文件夹名必须是 日期--文章名 &lt;/span&gt;
+    │   ├── index.md   &lt;span class=&quot;token comment&quot;&gt;# 文章&lt;/span&gt;
+    │   └── photo-1490474418585-ba9bad8fd0ea.jpg &lt;span class=&quot;token comment&quot;&gt;# cover&lt;/span&gt;
+    ├── 2017-10-03--be-who-you-are
+    │   ├── index.md
+    │   └── photo-1489824904134-891ab64532f1.jpg
+    ├── 2017-10-05--you-only-live-once
+    │   ├── index.md
+    │   └── photo-1456518563096-0ff5ee08204e.jpg
+    ├── 2017-10-07--people-will-forget
+    │   ├── index.md
+    │   └── photo-1489900464632-5f5907edda24.jpg
+    ├── 2017-10-09--i-am-so-clever
+    │   ├── index.md
+    │   └── photo-1507124484497-b7f446e65519.jpg
+    ├── 2017-10-11--imperfection-is-beauty
+    │   ├── index.md
+    │   └── photo-1469461084727-4bfb496cf55a.jpg
+    ├── 2017-10-13--there-are-only-two
+    │   ├── index.md
+    │   └── photo-1451324119451-db0ac857463c.jpg
+    ├── 2017-10-15--good-friends
+    │   ├── index.md
+    │   └── photo-1500531279542-fc8490c8ea4d.jpg
+    ├── 2017-10-17--i-have-not-failed
+    │   ├── index.md
+    │   └── photo-1463852247062-1bbca38f7805.jpg
+    ├── 2017-10-19--i-may-not-have-gone
+    │   ├── index.md
+    │   └── photo-1507915600431-5292809c5ab7.jpg
+    ├── 2017-10-21--like-nonsense
+    │   ├── 33893097-e5a70c34-df5a-11e7-8f5e-40e057626770.png
+    │   ├── index.md
+    │   └── photo-1465070845512-2b2dbdc6df66.jpg
+    └── draft-post
+        ├── index.md
+        └── photo-1490474418585-ba9bad8fd0ea.jpg&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;每篇文章 markdown 必须在前面加上如下文章信息，不然会运行报错：&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;---
+title: Good friends, good books, and a sleepy conscience
+cover: photo-1500531279542-fc8490c8ea4d.jpg
+author: greg lobinski
+---&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h2&gt;发布至 GitHub 仓库&lt;/h2&gt;
+&lt;p&gt;首先安装 gh-pages&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;yarn add -D gh-pages&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;然后在&lt;code class=&quot;language-text&quot;&gt;package.json&lt;/code&gt;中添加如下命令：&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;json&quot;&gt;&lt;pre class=&quot;language-json&quot;&gt;&lt;code class=&quot;language-json&quot;&gt;...
+&lt;span class=&quot;token property&quot;&gt;&quot;deploy&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;npm run build &amp;amp;&amp;amp; gh-pages -r git@github.com:zenghongtu/zenghongtu.github.io.git -b master -d public&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+...&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;运行该命令会打包并发布至目标仓库，其中&lt;code class=&quot;language-text&quot;&gt;-r&lt;/code&gt;后面添加的是上传的目标仓库，&lt;code class=&quot;language-text&quot;&gt;-b&lt;/code&gt;后面是目标分支，&lt;code class=&quot;language-text&quot;&gt;-d&lt;/code&gt;后面是需要发布的文件夹。&lt;/p&gt;
+&lt;p&gt;这个时候，我们可以打开相对应的地址，我这里是&lt;code class=&quot;language-text&quot;&gt;zenghongtu.github.io&lt;/code&gt;，查看部署后的博客。&lt;/p&gt;
+&lt;h2&gt;添加 Travis CI 自动构建&lt;/h2&gt;
+&lt;p&gt;接下来才是我们的重头戏，通过 Travis CI 实现自动构建。&lt;/p&gt;
+&lt;p&gt;首先到&lt;a href=&quot;https://travis-ci.org&quot;&gt;travis-ci&lt;/a&gt;注册账号，并绑定我们的 GitHub 账号，找到我们项目的仓库，我这里是&lt;code class=&quot;language-text&quot;&gt;my-blog&lt;/code&gt;，打开后面的小开关。如下：
+
+  &lt;span
+    class=&quot;gatsby-resp-image-wrapper&quot;
+    style=&quot;position: relative; display: block;  max-width: 663px; margin-left: auto; margin-right: auto;&quot;
+  &gt;
+    &lt;span
+      class=&quot;gatsby-resp-image-background-image&quot;
+      style=&quot;padding-bottom: 7.8431372549019605%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAACCAYAAABYBvyLAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAP0lEQVQI12P48uXLfxD49+8fGBMLYGo///r1f/P9B/+//v79/++fP/8Zvn79SpGB34EGHXz67P83IP3v79//AAK0nb5gBKhAAAAAAElFTkSuQmCC&apos;); background-size: cover; display: block;&quot;
+    &gt;
+      &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px transparent;&quot;
+        alt=&quot;20190218020724313 1015713666&quot;
+        title=&quot;&quot;
+        src=&quot;/static/e7cb4175b0599f5b0e8d1963d7143b4f/489de/20190218020724313_1015713666.png&quot;
+        srcset=&quot;/static/e7cb4175b0599f5b0e8d1963d7143b4f/ea0d9/20190218020724313_1015713666.png 200w,
+/static/e7cb4175b0599f5b0e8d1963d7143b4f/91024/20190218020724313_1015713666.png 400w,
+/static/e7cb4175b0599f5b0e8d1963d7143b4f/489de/20190218020724313_1015713666.png 663w&quot;
+        sizes=&quot;(max-width: 663px) 100vw, 663px&quot;
+      /&gt;
+    &lt;/span&gt;
+  &lt;/span&gt;
+  &lt;/p&gt;
+&lt;p&gt;然后在&lt;em&gt;设置&lt;/em&gt;里面把需要的环境变量填入：&lt;/p&gt;
+&lt;p&gt;
+  &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/eaa5fcb723fad273eb91f1ad203cc036/8c4c8/20190218020809691_752074459.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+  
+  &lt;span
+    class=&quot;gatsby-resp-image-wrapper&quot;
+    style=&quot;position: relative; display: block;  max-width: 800px; margin-left: auto; margin-right: auto;&quot;
+  &gt;
+    &lt;span
+      class=&quot;gatsby-resp-image-background-image&quot;
+      style=&quot;padding-bottom: 48.88653234358431%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAKCAYAAAC0VX7mAAAACXBIWXMAAAsTAAALEwEAmpwYAAABLUlEQVQoz3WSi66CMBBE+f9fREAQgvJGEJXX2tPrEkKuJhNLtz2d2dYZxlGyx0PyYZC076V/v2WZZ5kPWpZF1nXdxDeixrf+nLcBlFUlFapradpWmqaR+/0urRmrmMvzXLIss2LMHuZfr5dM02RlgdntJjejsiikNy4H4/ZhXKuez6fU5rDT6SSu64rneRKGod2jazm067o/YGFAZVnaApMI8H6MmyAIrM7n8wakhki0AbGPFKqLFMocQN/3rYACvF6v/wPpCUX+i2/sfWRi0StgxAUYRZFdr5E1yeaQDUxy0t6hwukhIHV4uVwsUBPpPmc0zwZXAPdxtX+/eoh+Rqa5nMZNHd2pQ4DEPd7y3qEF4rD6vkNi0ZOjeDZsiOPYKkkSSdPUXiI11uhz+wD/iPmWeNfqswAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;
+    &gt;
+      &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px transparent;&quot;
+        alt=&quot;20190218020809691 752074459&quot;
+        title=&quot;&quot;
+        src=&quot;/static/eaa5fcb723fad273eb91f1ad203cc036/b21dd/20190218020809691_752074459.png&quot;
+        srcset=&quot;/static/eaa5fcb723fad273eb91f1ad203cc036/2d451/20190218020809691_752074459.png 200w,
+/static/eaa5fcb723fad273eb91f1ad203cc036/06807/20190218020809691_752074459.png 400w,
+/static/eaa5fcb723fad273eb91f1ad203cc036/b21dd/20190218020809691_752074459.png 800w,
+/static/eaa5fcb723fad273eb91f1ad203cc036/8c4c8/20190218020809691_752074459.png 943w&quot;
+        sizes=&quot;(max-width: 800px) 100vw, 800px&quot;
+      /&gt;
+    &lt;/span&gt;
+  &lt;/span&gt;
+  
+  &lt;/a&gt;
+    &lt;/p&gt;
+&lt;p&gt;其中&lt;code class=&quot;language-text&quot;&gt;GITHUB_TOKEN&lt;/code&gt;为 GitHub 的 access_token，需要到 setting 中生成一个，其他的是可选的 key，如果需要开启相关的功能则需要设置。&lt;/p&gt;
+&lt;p&gt;然后在项目新建&lt;code class=&quot;language-text&quot;&gt;.travis.yml&lt;/code&gt;文件，添加配置内容：&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;language: node_js
+node_js: --lts
+cache: &lt;span class=&quot;token function&quot;&gt;npm&lt;/span&gt;
+sudo: required
+branches:
+  only:
+    - master
+
+before_install:
+  - &lt;span class=&quot;token function&quot;&gt;npm&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;install&lt;/span&gt; -g gatsby
+
+install:
+  - &lt;span class=&quot;token function&quot;&gt;npm&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;install&lt;/span&gt;
+
+before_script:
+  - &lt;span class=&quot;token function&quot;&gt;git&lt;/span&gt; config user.name &lt;span class=&quot;token string&quot;&gt;&quot;zenghongtu&quot;&lt;/span&gt;
+  - &lt;span class=&quot;token function&quot;&gt;git&lt;/span&gt; config user.email &lt;span class=&quot;token string&quot;&gt;&quot;zenghongtu@gmail.com&quot;&lt;/span&gt;
+  - &lt;span class=&quot;token function&quot;&gt;sed&lt;/span&gt; -i&lt;span class=&quot;token string&quot;&gt;&apos;&apos;&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;s~git@github.com:zenghongtu/zenghongtu.github.io.git~https://&lt;span class=&quot;token variable&quot;&gt;${GITHUB_TOKEN}&lt;/span&gt;@github.com/zenghongtu/zenghongtu.github.io.git~&quot;&lt;/span&gt; package.json
+
+script:
+  - &lt;span class=&quot;token function&quot;&gt;npm&lt;/span&gt; run deploy&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;每次 push 到仓库，就会调用 Travis CI 自动构建，这样就大功告成了。&lt;/p&gt;</content:encoded></item><item><title><![CDATA[一道 JavaScript 面试题的思考]]></title><description><![CDATA[前言：昨天在群里讨(jin)论(chui)技(niu)术(pi)，有位老铁发了一道他面的某公司面试题，顺手保存了。今早花了一点时间把这题做了出来，发现挺有意思的，决定在今天认真工（hua)作(shui…]]></description><link>https://zenghongtu.com/一道JavaScript面试题的思考/</link><guid isPermaLink="false">https://zenghongtu.com/一道JavaScript面试题的思考/</guid><pubDate>Thu, 31 Jan 2019 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;&lt;em&gt;前言：昨天在群里讨(jin)论(chui)技(niu)术(pi)，有位老铁发了一道他面的某公司面试题，顺手保存了。今早花了一点时间把这题做了出来，发现挺有意思的，决定在今天认真工（hua)作(shui)前，与大家分享我的解题方案和思考过程。&lt;/em&gt;&lt;/p&gt;
 &lt;p&gt;题目如下（可以自己先思考一会,没准可以想出比我更好的方法）：
 &lt;img width=&quot;891&quot; alt=&quot;wechatimg4088&quot; src=&quot;https://user-images.githubusercontent.com/25629121/51982440-f7c21500-24d0-11e9-9bd9-6021b0c287f5.png&quot;&gt;&lt;/p&gt;
 &lt;hr&gt;

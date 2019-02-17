@@ -1,0 +1,1 @@
+{"data":{"allMarkdownRemark":{"totalCount":1,"edges":[{"node":{"fields":{"slug":"/使用Gatsby.js快速搭建静态博客并通过Travis CI轻松实现自动构建/"},"excerpt":"前言：之前用 Hexo…","timeToRead":3,"frontmatter":{"title":"使用Gatsby.js快速搭建静态博客并通过Travis CI轻松实现自动构建","category":"Gatsby"}}}]},"site":{"siteMetadata":{"facebook":{"appId":"2349655921921608"}}}},"pageContext":{"category":"Gatsby"}}
