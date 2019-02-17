@@ -1,0 +1,1 @@
+{"data":{"allMarkdownRemark":{"totalCount":1,"edges":[{"node":{"fields":{"slug":"/Git删除错误提交的commit/"},"excerpt":"方法:  其他: 根据–soft –mixed –hard，会对working tree和index和HEAD进行重置:","timeToRead":1,"frontmatter":{"title":"Git删除错误提交的commit","category":"git"}}}]},"site":{"siteMetadata":{"facebook":{"appId":"2349655921921608"}}}},"pageContext":{"category":"git"}}
