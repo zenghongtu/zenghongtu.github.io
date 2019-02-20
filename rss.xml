@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Jason's Blog - 技术/思考/进阶]]></title><description><![CDATA[奋勇前行，有始有终。]]></description><link>https://zenghongtu.com</link><generator>RSS for Node</generator><lastBuildDate>Wed, 20 Feb 2019 05:04:54 GMT</lastBuildDate><item><title><![CDATA[捋一捋React的生命周期]]></title><description><![CDATA[前言：React 的版本从 v15 到 v16.3 ，再到v16.4，现在最新的版本是 v16.8了。其中最大的变化可能是 的加入，而最令人困惑的却是它的生命周期，新旧生命周期函数混杂在一起，难免会让许多新来者有很多困惑。所以这一篇我们来分析一下 React…]]></description><link>https://zenghongtu.com/捋一捋React的生命周期/</link><guid isPermaLink="false">https://zenghongtu.com/捋一捋React的生命周期/</guid><pubDate>Wed, 20 Feb 2019 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;前言：React 的版本从 v15 到 v16.3 ，再到v16.4，现在最新的版本是 v16.8了。其中最大的变化可能是&lt;code class=&quot;language-text&quot;&gt;React Hooks&lt;/code&gt;的加入，而最令人困惑的却是它的生命周期，新旧生命周期函数混杂在一起，难免会让许多新来者有很多困惑。所以这一篇我们来分析一下 React 生命周期的演变及原因，进一步理解其使用。&lt;/p&gt;
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Jason's Blog - 技术/思考/进阶]]></title><description><![CDATA[奋勇前行，有始有终。]]></description><link>https://zenghongtu.com</link><generator>RSS for Node</generator><lastBuildDate>Wed, 20 Feb 2019 05:30:37 GMT</lastBuildDate><item><title><![CDATA[捋一捋React的生命周期]]></title><description><![CDATA[前言：React 的版本从 v15 到 v16.3 ，再到v16.4，现在最新的版本是 v16.8了。其中最大的变化可能是 的加入，而最令人困惑的却是它的生命周期，新旧生命周期函数混杂在一起，难免会让许多新来者有很多困惑。所以这一篇我们来分析一下 React…]]></description><link>https://zenghongtu.com/捋一捋React的生命周期/</link><guid isPermaLink="false">https://zenghongtu.com/捋一捋React的生命周期/</guid><pubDate>Wed, 20 Feb 2019 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;前言：React 的版本从 v15 到 v16.3 ，再到v16.4，现在最新的版本是 v16.8了。其中最大的变化可能是&lt;code class=&quot;language-text&quot;&gt;React Hooks&lt;/code&gt;的加入，而最令人困惑的却是它的生命周期，新旧生命周期函数混杂在一起，难免会让许多新来者有很多困惑。所以这一篇我们来分析一下 React 生命周期的演变及原因，进一步理解其使用。&lt;/p&gt;
 &lt;h2&gt;组件生命周期的四个阶段&lt;/h2&gt;
 &lt;ol&gt;
 &lt;li&gt;Initialization  （初始化阶段：组件实例的创建）&lt;/li&gt;
@@ -67,51 +67,51 @@
 &lt;h4&gt;componentWillReceiveProps()&lt;/h4&gt;
 &lt;p&gt;新版中为&lt;code class=&quot;language-text&quot;&gt;UNSAFE_componentWillReceiveProps()&lt;/code&gt;。&lt;/p&gt;
 &lt;p&gt;在组件加载后，如果有新的&lt;code class=&quot;language-text&quot;&gt;props&lt;/code&gt;传递过来，会先调用这个函数，可以在这里调用&lt;code class=&quot;language-text&quot;&gt;setState()&lt;/code&gt;修改&lt;code class=&quot;language-text&quot;&gt;state&lt;/code&gt;。&lt;/p&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;componentWillReceiveProps(nextProps)&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;js&quot;&gt;&lt;pre class=&quot;language-js&quot;&gt;&lt;code class=&quot;language-js&quot;&gt;&lt;span class=&quot;token function&quot;&gt;componentWillReceiveProps&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;nextProps&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;h4&gt;shouldComponentUpdate()&lt;/h4&gt;
 &lt;p&gt;&lt;code class=&quot;language-text&quot;&gt;react&lt;/code&gt;中一个重要的性能优化点，组件接收到新的&lt;code class=&quot;language-text&quot;&gt;props&lt;/code&gt;或者&lt;code class=&quot;language-text&quot;&gt;state&lt;/code&gt;，返回&lt;code class=&quot;language-text&quot;&gt;true&lt;/code&gt;表示需要更新 dom，返回&lt;code class=&quot;language-text&quot;&gt;false&lt;/code&gt;阻止更新。&lt;/p&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;shouldComponentUpdate(nextProps, nextState)&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;js&quot;&gt;&lt;pre class=&quot;language-js&quot;&gt;&lt;code class=&quot;language-js&quot;&gt;&lt;span class=&quot;token function&quot;&gt;shouldComponentUpdate&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;nextProps&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; nextState&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;h4&gt;componentWillUpdate()&lt;/h4&gt;
 &lt;p&gt;新版中为&lt;code class=&quot;language-text&quot;&gt;UNSAFE_componentWillUpdate()&lt;/code&gt;。&lt;/p&gt;
 &lt;p&gt;组件加载时不调用，只有在组件需要更新（即&lt;code class=&quot;language-text&quot;&gt;shouldComponentUpdate&lt;/code&gt;返回&lt;code class=&quot;language-text&quot;&gt;true&lt;/code&gt;）时调用。&lt;/p&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;componentWillUpdate(nextProps, nextState)&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;js&quot;&gt;&lt;pre class=&quot;language-js&quot;&gt;&lt;code class=&quot;language-js&quot;&gt;&lt;span class=&quot;token function&quot;&gt;componentWillUpdate&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;nextProps&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; nextState&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;&lt;strong&gt;注意&lt;/strong&gt;：不能在这个方法中调用&lt;code class=&quot;language-text&quot;&gt;setState()&lt;/code&gt;修改&lt;code class=&quot;language-text&quot;&gt;state&lt;/code&gt;。&lt;/p&gt;
 &lt;h4&gt;render()&lt;/h4&gt;
 &lt;p&gt;同上。&lt;/p&gt;
 &lt;h4&gt;componentDidUpdate()&lt;/h4&gt;
 &lt;p&gt;在组件更新完成后立即被调用，可以进行网络请求等。&lt;/p&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;componentDidUpdate(prevProps, prevState)&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;js&quot;&gt;&lt;pre class=&quot;language-js&quot;&gt;&lt;code class=&quot;language-js&quot;&gt;&lt;span class=&quot;token function&quot;&gt;componentDidUpdate&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;prevProps&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; prevState&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;h3&gt;Unmounting  （卸载阶段：涉及1个钩子函数）&lt;/h3&gt;
 &lt;h4&gt;componentWillUnmount()&lt;/h4&gt;
 &lt;p&gt;在组件被卸载和销毁之前调用，可以在这里处理任何必要的清理工作，比如解除定时器，取消已经发起的网络请求，清理在&lt;code class=&quot;language-text&quot;&gt;componentDidMount&lt;/code&gt;函数中创建的 DOM 元素。&lt;/p&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;componentWillUnmount()&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;js&quot;&gt;&lt;pre class=&quot;language-js&quot;&gt;&lt;code class=&quot;language-js&quot;&gt;&lt;span class=&quot;token function&quot;&gt;componentWillUnmount&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;h3&gt;Error Handling（错误处理：涉及1个钩子函数）&lt;/h3&gt;
 &lt;h4&gt;componentDidCatch()&lt;/h4&gt;
 &lt;p&gt;错误边界捕获，在v16.0刚推出的时候新增加的一个生命周期函数，用于捕获在&lt;strong&gt;子组件树&lt;/strong&gt;中任意地方发生的 JavaScript 错误，一个错误边界不能捕获它自己内部的错误。&lt;/p&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;componentDidCatch(error, info)&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;js&quot;&gt;&lt;pre class=&quot;language-js&quot;&gt;&lt;code class=&quot;language-js&quot;&gt;&lt;span class=&quot;token function&quot;&gt;componentDidCatch&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;error&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; info&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;h3&gt;组件的基本写法&lt;/h3&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;import React, {Component} from &amp;#39;React&amp;#39;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;js&quot;&gt;&lt;pre class=&quot;language-js&quot;&gt;&lt;code class=&quot;language-js&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;import&lt;/span&gt; React&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;Component&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;React&apos;&lt;/span&gt;
 
-export default class OldReactComponent extends Componet{
-    static defaultProps={}
-    static propTypes={}
-    constructor(props){
-        super(props)
-    }
-    state={}
-    componentWillMount(){}
-    render(){
-        return null
-    }
-    componentDidMount(){}
-    componentWillReceivePorps(nextProps){}
-    componentShouldUpdate(nextProps,nextState){
-        return true
-    }
-    componentWillUpdate(nextProps,nextState){}
-    componentDidUpdate(){}
-    componentWillUnmount(){}
-}&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;span class=&quot;token keyword&quot;&gt;export&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;default&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;OldReactComponent&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;extends&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;Componet&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;static&lt;/span&gt; defaultProps&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;static&lt;/span&gt; propTypes&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;token function&quot;&gt;constructor&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;props&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;token keyword&quot;&gt;super&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;props&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+    state&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;token function&quot;&gt;componentWillMount&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;token function&quot;&gt;render&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;token keyword&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;null&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;token function&quot;&gt;componentDidMount&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;token function&quot;&gt;componentWillReceivePorps&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;nextProps&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;token function&quot;&gt;componentShouldUpdate&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;nextProps&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;nextState&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;token keyword&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;token boolean&quot;&gt;true&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;token function&quot;&gt;componentWillUpdate&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;nextProps&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;nextState&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;token function&quot;&gt;componentDidUpdate&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;token function&quot;&gt;componentWillUnmount&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;h2&gt;新版生命周期（16.4之后的生命周期）&lt;/h2&gt;
 &lt;p&gt;
   &lt;a
@@ -167,7 +167,7 @@ export default class OldReactComponent extends Componet{
 &lt;h3&gt;Mounting   （加载阶段：涉及3个钩子函数）&lt;/h3&gt;
 &lt;h4&gt;static getDerivedStateFromProps()&lt;/h4&gt;
 &lt;p&gt;因为是静态方法，所以无法访问到组件实例。每次组件调用&lt;code class=&quot;language-text&quot;&gt;render&lt;/code&gt;前都会被调用，获取新的&lt;code class=&quot;language-text&quot;&gt;props&lt;/code&gt;和&lt;code class=&quot;language-text&quot;&gt;state&lt;/code&gt;（v16.3只会为&lt;code class=&quot;language-text&quot;&gt;props&lt;/code&gt;的而调用，v16.4修正为&lt;code class=&quot;language-text&quot;&gt;props&lt;/code&gt;和&lt;code class=&quot;language-text&quot;&gt;state&lt;/code&gt;)之后，返回一个对象作为新的&lt;code class=&quot;language-text&quot;&gt;state&lt;/code&gt;，如果返回&lt;code class=&quot;language-text&quot;&gt;null&lt;/code&gt;则表示不需要更新；配合componentDidUpdate，可以覆盖componentWillReceiveProps的所有用法。并且它应该是个纯函数，没有副作用(side effect)。&lt;/p&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;static getDerivedStateFromProps(props,state)&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;js&quot;&gt;&lt;pre class=&quot;language-js&quot;&gt;&lt;code class=&quot;language-js&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;getDerivedStateFromProps&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;props&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;state&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;h4&gt;render()&lt;/h4&gt;
 &lt;p&gt;同上。&lt;/p&gt;
 &lt;h4&gt;componentDidMount()&lt;/h4&gt;
@@ -181,7 +181,7 @@ export default class OldReactComponent extends Componet{
 &lt;p&gt;同上。&lt;/p&gt;
 &lt;h4&gt;getSnapshotBeforeUpdate()&lt;/h4&gt;
 &lt;p&gt;触发时间: update发生的时候，在render之后，在组件dom渲染之前；返回一个值，作为componentDidUpdate的第三个参数；配合componentDidUpdate, 可以覆盖componentWillUpdate的所有用法，常用于 scroll 位置的定位。&lt;/p&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;getSnapshotBeforeUpdate(prevProps, prevState)&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;js&quot;&gt;&lt;pre class=&quot;language-js&quot;&gt;&lt;code class=&quot;language-js&quot;&gt;&lt;span class=&quot;token function&quot;&gt;getSnapshotBeforeUpdate&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;prevProps&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; prevState&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;h4&gt;componentDidUpdate()&lt;/h4&gt;
 &lt;p&gt;同上。&lt;/p&gt;
 &lt;h3&gt;Unmounting  （卸载阶段：涉及1个钩子函数）&lt;/h3&gt;
@@ -192,29 +192,29 @@ export default class OldReactComponent extends Componet{
 &lt;p&gt;同上。&lt;/p&gt;
 &lt;h4&gt;static getDerivedStateFromError()&lt;/h4&gt;
 &lt;p&gt; 用于在“render”阶段（非&lt;code class=&quot;language-text&quot;&gt;render&lt;/code&gt;函数）的错误捕获，应该是个纯函数，没有副作用(side effect)。&lt;/p&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;static getDerivedStateFromError(error)&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;js&quot;&gt;&lt;pre class=&quot;language-js&quot;&gt;&lt;code class=&quot;language-js&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;getDerivedStateFromError&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;error&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;h3&gt;组件的基本写法&lt;/h3&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;import React, {Component} from &amp;#39;React&amp;#39;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;js&quot;&gt;&lt;pre class=&quot;language-js&quot;&gt;&lt;code class=&quot;language-js&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;import&lt;/span&gt; React&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;Component&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;React&apos;&lt;/span&gt;
 
-export default class OldReactComponent extends Componet{
-    static defaultProps={}
-    static propTypes={}
-    constructor(props){
-        super(props)
-    }
-    state={}
-    static getDerivedStateFromProps(props,state){}
-    render(){
-        return null
-    }
-    componentDidMount(){}
-    componentShouldUpdate(nextProps,nextState){
-        return true
-    }
-    getSnapshotBeforeUpdate(prevProps, prevState){}
-    componentDidUpdate(){}
-    componentWillUnmount(){}
-}&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;span class=&quot;token keyword&quot;&gt;export&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;default&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;OldReactComponent&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;extends&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;Componet&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;static&lt;/span&gt; defaultProps&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;static&lt;/span&gt; propTypes&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;token function&quot;&gt;constructor&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;props&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;token keyword&quot;&gt;super&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;props&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+    state&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;getDerivedStateFromProps&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;props&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;state&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;token function&quot;&gt;render&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;token keyword&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;null&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;token function&quot;&gt;componentDidMount&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;token function&quot;&gt;componentShouldUpdate&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;nextProps&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;nextState&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;token keyword&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;token boolean&quot;&gt;true&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;token function&quot;&gt;getSnapshotBeforeUpdate&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;prevProps&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; prevState&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;token function&quot;&gt;componentDidUpdate&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;token function&quot;&gt;componentWillUnmount&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;h2&gt;总结&lt;/h2&gt;
 &lt;ol&gt;
 &lt;li&gt;
