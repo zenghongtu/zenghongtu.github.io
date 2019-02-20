@@ -1,4 +1,239 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Jason's Blog - 技术/思考/进阶]]></title><description><![CDATA[奋勇前行，有始有终。]]></description><link>https://zenghongtu.com</link><generator>RSS for Node</generator><lastBuildDate>Sun, 17 Feb 2019 18:24:34 GMT</lastBuildDate><item><title><![CDATA[使用Gatsby.js快速搭建静态博客并通过Travis CI轻松实现自动构建]]></title><description><![CDATA[前言：之前用 Hexo…]]></description><link>https://zenghongtu.com/使用Gatsby.js快速搭建静态博客并通过Travis CI轻松实现自动构建/</link><guid isPermaLink="false">https://zenghongtu.com/使用Gatsby.js快速搭建静态博客并通过Travis CI轻松实现自动构建/</guid><pubDate>Mon, 18 Feb 2019 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;前言：之前用 Hexo 搭建的博客，稀稀散散的写一些时间，后来就懒了没有坚持下来，中断了足足一年没写了。这几天心血来潮，决定重新搭建一个，一是监督自己完成制定的计划（每周一篇，每月五篇文章），二是与各位老铁分享学习心得，三则是建立自己的知识体系，毕竟好记性不如烂笔头嘛。昨天花了一天多的时间完成了现在这个博客的模样，为什么搭个博客要花这么久，因为这里面涉及到了一些我之前没有接触过的技术，比如GraphQL、Travis CI，我都有认真的去学习了一下，还有就是把之前在 Hexo 上的几篇修改了一下添加到现在这个博客中了。接下来进入主题。&lt;/p&gt;
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Jason's Blog - 技术/思考/进阶]]></title><description><![CDATA[奋勇前行，有始有终。]]></description><link>https://zenghongtu.com</link><generator>RSS for Node</generator><lastBuildDate>Wed, 20 Feb 2019 05:04:54 GMT</lastBuildDate><item><title><![CDATA[捋一捋React的生命周期]]></title><description><![CDATA[前言：React 的版本从 v15 到 v16.3 ，再到v16.4，现在最新的版本是 v16.8了。其中最大的变化可能是 的加入，而最令人困惑的却是它的生命周期，新旧生命周期函数混杂在一起，难免会让许多新来者有很多困惑。所以这一篇我们来分析一下 React…]]></description><link>https://zenghongtu.com/捋一捋React的生命周期/</link><guid isPermaLink="false">https://zenghongtu.com/捋一捋React的生命周期/</guid><pubDate>Wed, 20 Feb 2019 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;前言：React 的版本从 v15 到 v16.3 ，再到v16.4，现在最新的版本是 v16.8了。其中最大的变化可能是&lt;code class=&quot;language-text&quot;&gt;React Hooks&lt;/code&gt;的加入，而最令人困惑的却是它的生命周期，新旧生命周期函数混杂在一起，难免会让许多新来者有很多困惑。所以这一篇我们来分析一下 React 生命周期的演变及原因，进一步理解其使用。&lt;/p&gt;
+&lt;h2&gt;组件生命周期的四个阶段&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;Initialization  （初始化阶段：组件实例的创建）&lt;/li&gt;
+&lt;li&gt;Mounting   （加载阶段：组件插入 dom中）&lt;/li&gt;
+&lt;li&gt;Updating  （更新阶段：属性或状态每改变一次都将会触发一次，组件重新渲染。）&lt;/li&gt;
+&lt;li&gt;Unmounting  （卸载阶段：组件卸载和销毁）&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2&gt;老版生命周期（16.3之前的生命周期）&lt;/h2&gt;
+&lt;p&gt;
+  &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/a35ab94cb7a12e6c1a80c94995cb4151/f01c5/20190218202125505_601165039.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+  
+  &lt;span
+    class=&quot;gatsby-resp-image-wrapper&quot;
+    style=&quot;position: relative; display: block;  max-width: 800px; margin-left: auto; margin-right: auto;&quot;
+  &gt;
+    &lt;span
+      class=&quot;gatsby-resp-image-background-image&quot;
+      style=&quot;padding-bottom: 126.6897746967071%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAZCAYAAAAxFw7TAAAACXBIWXMAAAsSAAALEgHS3X78AAACHklEQVQ4y6WUi46jMAxF+f9PrDSV2t2qwyukBVr69OSYupuhQGe0kQwhODfX146T+/0uc+N8Pqsx8DX/eB6PhEfTNLLf76UoCinLUrIsU5Dj8ahr2OFweG6aI6GAu91ONy2XS9lsNk9ADlmtVmrMWbtcLvMM505r21YPAwyGvOu6fh+y/YyNweY0TdUM6G3IQ5FjQFjFDKcOfmE4HOZIyOgJQxL334CESdYxWP44y1OAhOm917CZw7LrulnQWUAAnHNqzAGNi/zXgGhopWIaxv/H9EzGhJ4qm9vtNpkQW0vm7jGsLClxHUYwL/c7uV6vQeiTXMOVulzOcjqdvhmghG5NAoNp2x6kfuiKD74aMhqxsM1KSfNefNiYbmTZuVINptz5KiRpvUll/XcrVVXpOoljroDaVVxoEM7rHEYYpwP8GQ7LikpaPWwveZ7r2wcAgADEn2gTakwtMKkqJz7MAbEr530lfwIbQIuykrz0ypDNYwlKCCnLcj3VQgLQ+iBXryhycWWY56Ffup4VOo6Vm4bcdX2YRv9fIR+lCeDbrAoJQIJeCrQaq0VlmBVOPtahAeRlaLAfslgstNHCzBrD56MWkaF5AKI1YQ9vTeJVw1pLACczwu419E89YW2Z59tK5Rtg3+v6UGyD1R7GZsy++QfDqc6jgEMwAzQ2AMRrfFtSXrJMOOY4fGNWVvHaEPAtQ+sylhTeVlYmwbDz2PgCKhWdkMvkgO0AAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;
+    &gt;
+      &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px transparent;&quot;
+        alt=&quot;React v16.3之前 生命周期&quot;
+        title=&quot;&quot;
+        src=&quot;/static/a35ab94cb7a12e6c1a80c94995cb4151/b21dd/20190218202125505_601165039.png&quot;
+        srcset=&quot;/static/a35ab94cb7a12e6c1a80c94995cb4151/2d451/20190218202125505_601165039.png 200w,
+/static/a35ab94cb7a12e6c1a80c94995cb4151/06807/20190218202125505_601165039.png 400w,
+/static/a35ab94cb7a12e6c1a80c94995cb4151/b21dd/20190218202125505_601165039.png 800w,
+/static/a35ab94cb7a12e6c1a80c94995cb4151/f01c5/20190218202125505_601165039.png 1154w&quot;
+        sizes=&quot;(max-width: 800px) 100vw, 800px&quot;
+      /&gt;
+    &lt;/span&gt;
+  &lt;/span&gt;
+  
+  &lt;/a&gt;
+    &lt;/p&gt;
+&lt;h3&gt;Initialization  （初始化阶段：涉及4个钩子函数）&lt;/h3&gt;
+&lt;p&gt;这些方法会在组件初始化的时候被调用，只跟实例的创建有关。
+如果用&lt;code class=&quot;language-text&quot;&gt;createReactClass&lt;/code&gt;进行创建，则还有&lt;code class=&quot;language-text&quot;&gt;getInitialState&lt;/code&gt;这些生命周期函数，但很少使用，我们这里不提及。&lt;/p&gt;
+&lt;h4&gt;static defaultProps{} （getDefaultProps()）&lt;/h4&gt;
+&lt;p&gt;定义默认&lt;code class=&quot;language-text&quot;&gt;props&lt;/code&gt;，会和父组件传下来的&lt;code class=&quot;language-text&quot;&gt;props&lt;/code&gt;进行合并，且以父组件中的&lt;code class=&quot;language-text&quot;&gt;props&lt;/code&gt;优先级更高，相当于&lt;code class=&quot;language-text&quot;&gt;{...defaultProps, props}&lt;/code&gt;。&lt;/p&gt;
+&lt;h4&gt;static propTypes{} （getInitialState()）&lt;/h4&gt;
+&lt;p&gt;定义&lt;code class=&quot;language-text&quot;&gt;props&lt;/code&gt;的数据类型，可以帮助我们确定其有效性，减少许多开发中不必要的错误。&lt;/p&gt;
+&lt;h4&gt;constructor()&lt;/h4&gt;
+&lt;p&gt;在加载阶段前调用一次，进行 state 的初始化。&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;js&quot;&gt;&lt;pre class=&quot;language-js&quot;&gt;&lt;code class=&quot;language-js&quot;&gt;&lt;span class=&quot;token function&quot;&gt;constructor&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;props&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;super&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;props&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;&lt;code class=&quot;language-text&quot;&gt;super(props)&lt;/code&gt;用来调用父类的构建方法。&lt;/p&gt;
+&lt;h3&gt;Mounting   （加载阶段：涉及3个钩子函数）&lt;/h3&gt;
+&lt;h4&gt;componentWillMount()&lt;/h4&gt;
+&lt;p&gt;新版中为&lt;code class=&quot;language-text&quot;&gt;UNSAFE_componentWillMount()&lt;/code&gt;。&lt;/p&gt;
+&lt;p&gt;只在组件加载时调用，整个生命周期只调用一次，以后组件更新也不会调用，此时可以修改 state。&lt;/p&gt;
+&lt;h4&gt;render()&lt;/h4&gt;
+&lt;p&gt;&lt;code class=&quot;language-text&quot;&gt;react&lt;/code&gt; 中最重要的生命周期函数，创建虚拟 dom，并进行 &lt;code class=&quot;language-text&quot;&gt;diff&lt;/code&gt; 算法，更新 dom 树也在此进行。所以不应该在此改变组件的状态或者与浏览器进行交互。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;注意：&lt;/strong&gt;这个函数不能缺少，如果不创建虚拟 dom，可以&lt;code class=&quot;language-text&quot;&gt;return null&lt;/code&gt;。&lt;/p&gt;
+&lt;h4&gt;componentDidMount()&lt;/h4&gt;
+&lt;p&gt;组件加载完成后立即调用，整个生命周期只调用一次，可以获取到更新后的 DOM，在此处可以进行网络请求等。&lt;/p&gt;
+&lt;h3&gt;Updating  （更新阶段：涉及5个钩子函数）&lt;/h3&gt;
+&lt;h4&gt;componentWillReceiveProps()&lt;/h4&gt;
+&lt;p&gt;新版中为&lt;code class=&quot;language-text&quot;&gt;UNSAFE_componentWillReceiveProps()&lt;/code&gt;。&lt;/p&gt;
+&lt;p&gt;在组件加载后，如果有新的&lt;code class=&quot;language-text&quot;&gt;props&lt;/code&gt;传递过来，会先调用这个函数，可以在这里调用&lt;code class=&quot;language-text&quot;&gt;setState()&lt;/code&gt;修改&lt;code class=&quot;language-text&quot;&gt;state&lt;/code&gt;。&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;componentWillReceiveProps(nextProps)&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h4&gt;shouldComponentUpdate()&lt;/h4&gt;
+&lt;p&gt;&lt;code class=&quot;language-text&quot;&gt;react&lt;/code&gt;中一个重要的性能优化点，组件接收到新的&lt;code class=&quot;language-text&quot;&gt;props&lt;/code&gt;或者&lt;code class=&quot;language-text&quot;&gt;state&lt;/code&gt;，返回&lt;code class=&quot;language-text&quot;&gt;true&lt;/code&gt;表示需要更新 dom，返回&lt;code class=&quot;language-text&quot;&gt;false&lt;/code&gt;阻止更新。&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;shouldComponentUpdate(nextProps, nextState)&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h4&gt;componentWillUpdate()&lt;/h4&gt;
+&lt;p&gt;新版中为&lt;code class=&quot;language-text&quot;&gt;UNSAFE_componentWillUpdate()&lt;/code&gt;。&lt;/p&gt;
+&lt;p&gt;组件加载时不调用，只有在组件需要更新（即&lt;code class=&quot;language-text&quot;&gt;shouldComponentUpdate&lt;/code&gt;返回&lt;code class=&quot;language-text&quot;&gt;true&lt;/code&gt;）时调用。&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;componentWillUpdate(nextProps, nextState)&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;&lt;strong&gt;注意&lt;/strong&gt;：不能在这个方法中调用&lt;code class=&quot;language-text&quot;&gt;setState()&lt;/code&gt;修改&lt;code class=&quot;language-text&quot;&gt;state&lt;/code&gt;。&lt;/p&gt;
+&lt;h4&gt;render()&lt;/h4&gt;
+&lt;p&gt;同上。&lt;/p&gt;
+&lt;h4&gt;componentDidUpdate()&lt;/h4&gt;
+&lt;p&gt;在组件更新完成后立即被调用，可以进行网络请求等。&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;componentDidUpdate(prevProps, prevState)&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h3&gt;Unmounting  （卸载阶段：涉及1个钩子函数）&lt;/h3&gt;
+&lt;h4&gt;componentWillUnmount()&lt;/h4&gt;
+&lt;p&gt;在组件被卸载和销毁之前调用，可以在这里处理任何必要的清理工作，比如解除定时器，取消已经发起的网络请求，清理在&lt;code class=&quot;language-text&quot;&gt;componentDidMount&lt;/code&gt;函数中创建的 DOM 元素。&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;componentWillUnmount()&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h3&gt;Error Handling（错误处理：涉及1个钩子函数）&lt;/h3&gt;
+&lt;h4&gt;componentDidCatch()&lt;/h4&gt;
+&lt;p&gt;错误边界捕获，在v16.0刚推出的时候新增加的一个生命周期函数，用于捕获在&lt;strong&gt;子组件树&lt;/strong&gt;中任意地方发生的 JavaScript 错误，一个错误边界不能捕获它自己内部的错误。&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;componentDidCatch(error, info)&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h3&gt;组件的基本写法&lt;/h3&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;import React, {Component} from &amp;#39;React&amp;#39;
+
+export default class OldReactComponent extends Componet{
+    static defaultProps={}
+    static propTypes={}
+    constructor(props){
+        super(props)
+    }
+    state={}
+    componentWillMount(){}
+    render(){
+        return null
+    }
+    componentDidMount(){}
+    componentWillReceivePorps(nextProps){}
+    componentShouldUpdate(nextProps,nextState){
+        return true
+    }
+    componentWillUpdate(nextProps,nextState){}
+    componentDidUpdate(){}
+    componentWillUnmount(){}
+}&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h2&gt;新版生命周期（16.4之后的生命周期）&lt;/h2&gt;
+&lt;p&gt;
+  &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/54f619e208fce4142c08417841ef04b3/4ec34/20190219170613371_1692935879.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+  
+  &lt;span
+    class=&quot;gatsby-resp-image-wrapper&quot;
+    style=&quot;position: relative; display: block;  max-width: 800px; margin-left: auto; margin-right: auto;&quot;
+  &gt;
+    &lt;span
+      class=&quot;gatsby-resp-image-background-image&quot;
+      style=&quot;padding-bottom: 107.7896138482024%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAWCAYAAADAQbwGAAAACXBIWXMAAAsSAAALEgHS3X78AAACEUlEQVQ4y41Vi5KCMAzk/z/ybjwVoZTSUnmoaK4bCFYE75jJ0Np22d0kNaGV5/F4zG8Z3243ul6vq/viJ8Gmtm2prmvy3vPBJdgwDJSmKUff9y9rS9DkfD6TUooOhwMVRTGziA/ht6qqyFpLTdMQztzv93XAT5LlAWutNUfXdW+2vAAKkzhk4+VyYYkAAUMEGMKCLdAklhcDQhKkOeeoLEtmhzdiyfKj5BgQnhljGBhjRO1rTiJYLkn8CSgMIRPv2gWwpuU5WK5K3vIQgCgl+AZgjI/Zgfann8CwoS2rVrMsgM49AeFdXuRUuYrarqWt6khQEgj25D7QEM37IAtgkAiGCIyx3l/QEB3XKKphZojuQGBzpgy58AaILi1VdhzP2Z5q0ZiSlDaUZoqZI3HAQIMkUvk+RJrpkEVPXciiNpbKEC2vN3zgGNYr59kGZBpe4jwCFiESPxmvQ9tpXXD7YQ65YF3w7yMzV0PN6Ocwtd5bHcqlID6JxJl5WEP9jXvOc4LibokjkcKVWhNwBJjGXaKDb0pX7OEScJUhAPb7Pe12OwYZ2fpQLoblyoesdbwW30wvgHFpQB6AwVakxlZIG6J0Vlvv6U/zFgKGD2AsH8Z8eePMgPBQCjZmIQchXRWKcpUF2W6SbLc9xKIArDFsQg2eVErfxy9uu38x5Gtpai0JeAh2eZ5zLZZ6vAvF362/gF8u9bEQ89XzKQAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;
+    &gt;
+      &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px transparent;&quot;
+        alt=&quot;React v16&quot;
+        title=&quot;&quot;
+        src=&quot;/static/54f619e208fce4142c08417841ef04b3/b21dd/20190219170613371_1692935879.png&quot;
+        srcset=&quot;/static/54f619e208fce4142c08417841ef04b3/2d451/20190219170613371_1692935879.png 200w,
+/static/54f619e208fce4142c08417841ef04b3/06807/20190219170613371_1692935879.png 400w,
+/static/54f619e208fce4142c08417841ef04b3/b21dd/20190219170613371_1692935879.png 800w,
+/static/54f619e208fce4142c08417841ef04b3/c9309/20190219170613371_1692935879.png 1200w,
+/static/54f619e208fce4142c08417841ef04b3/4ec34/20190219170613371_1692935879.png 1502w&quot;
+        sizes=&quot;(max-width: 800px) 100vw, 800px&quot;
+      /&gt;
+    &lt;/span&gt;
+  &lt;/span&gt;
+  
+  &lt;/a&gt;
+    
+（带&lt;code class=&quot;language-text&quot;&gt;UNSAFE_&lt;/code&gt;的函数在以后将会被丢弃，官方也不建议使用，这里不再列出。）&lt;/p&gt;
+&lt;p&gt;新版本中，新增了三个生命周期函数：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;static getDerivedStateFromProps() &lt;/li&gt;
+&lt;li&gt;getSnapshotBeforeUpdate&lt;/li&gt;
+&lt;li&gt;static getDerivedStateFromError()&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;同时deprecate了一组生命周期API，包括：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;componentWillReceiveProps&lt;/li&gt;
+&lt;li&gt;componentWillMount&lt;/li&gt;
+&lt;li&gt;componentWillUpdate&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;可以看出除了&lt;code class=&quot;language-text&quot;&gt;shouldComponentUpdate&lt;/code&gt;之外，&lt;code class=&quot;language-text&quot;&gt;render&lt;/code&gt; 之前的所有生命周期都被消灭了。原因是这些生命周期太多时候没有被正确使用，而且在&lt;code class=&quot;language-text&quot;&gt;Fiber&lt;/code&gt;之后，&lt;strong&gt;如果要开启&lt;code class=&quot;language-text&quot;&gt;async rendering&lt;/code&gt;，在&lt;code class=&quot;language-text&quot;&gt;render&lt;/code&gt;函数之前的所有函数，都有可能被执行多次。&lt;/strong&gt;&lt;/p&gt;
+&lt;h3&gt;Initialization  （初始化阶段：涉及4个钩子函数）&lt;/h3&gt;
+&lt;p&gt;同上。&lt;/p&gt;
+&lt;h3&gt;Mounting   （加载阶段：涉及3个钩子函数）&lt;/h3&gt;
+&lt;h4&gt;static getDerivedStateFromProps()&lt;/h4&gt;
+&lt;p&gt;因为是静态方法，所以无法访问到组件实例。每次组件调用&lt;code class=&quot;language-text&quot;&gt;render&lt;/code&gt;前都会被调用，获取新的&lt;code class=&quot;language-text&quot;&gt;props&lt;/code&gt;和&lt;code class=&quot;language-text&quot;&gt;state&lt;/code&gt;（v16.3只会为&lt;code class=&quot;language-text&quot;&gt;props&lt;/code&gt;的而调用，v16.4修正为&lt;code class=&quot;language-text&quot;&gt;props&lt;/code&gt;和&lt;code class=&quot;language-text&quot;&gt;state&lt;/code&gt;)之后，返回一个对象作为新的&lt;code class=&quot;language-text&quot;&gt;state&lt;/code&gt;，如果返回&lt;code class=&quot;language-text&quot;&gt;null&lt;/code&gt;则表示不需要更新；配合componentDidUpdate，可以覆盖componentWillReceiveProps的所有用法。并且它应该是个纯函数，没有副作用(side effect)。&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;static getDerivedStateFromProps(props,state)&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h4&gt;render()&lt;/h4&gt;
+&lt;p&gt;同上。&lt;/p&gt;
+&lt;h4&gt;componentDidMount()&lt;/h4&gt;
+&lt;p&gt;同上。&lt;/p&gt;
+&lt;h3&gt;Updating  （更新阶段：涉及5个钩子函数）&lt;/h3&gt;
+&lt;h4&gt;static getDerivedStateFromProps()&lt;/h4&gt;
+&lt;p&gt;同上。&lt;/p&gt;
+&lt;h4&gt;shouldComponentUpdate()&lt;/h4&gt;
+&lt;p&gt;同上。&lt;/p&gt;
+&lt;h4&gt;render()&lt;/h4&gt;
+&lt;p&gt;同上。&lt;/p&gt;
+&lt;h4&gt;getSnapshotBeforeUpdate()&lt;/h4&gt;
+&lt;p&gt;触发时间: update发生的时候，在render之后，在组件dom渲染之前；返回一个值，作为componentDidUpdate的第三个参数；配合componentDidUpdate, 可以覆盖componentWillUpdate的所有用法，常用于 scroll 位置的定位。&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;getSnapshotBeforeUpdate(prevProps, prevState)&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h4&gt;componentDidUpdate()&lt;/h4&gt;
+&lt;p&gt;同上。&lt;/p&gt;
+&lt;h3&gt;Unmounting  （卸载阶段：涉及1个钩子函数）&lt;/h3&gt;
+&lt;h4&gt;componentWillUnmount()&lt;/h4&gt;
+&lt;p&gt;同上。&lt;/p&gt;
+&lt;h3&gt;Error Handling（错误处理：涉及2个钩子函数）&lt;/h3&gt;
+&lt;h4&gt;componentDidCatch()&lt;/h4&gt;
+&lt;p&gt;同上。&lt;/p&gt;
+&lt;h4&gt;static getDerivedStateFromError()&lt;/h4&gt;
+&lt;p&gt; 用于在“render”阶段（非&lt;code class=&quot;language-text&quot;&gt;render&lt;/code&gt;函数）的错误捕获，应该是个纯函数，没有副作用(side effect)。&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;static getDerivedStateFromError(error)&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h3&gt;组件的基本写法&lt;/h3&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;import React, {Component} from &amp;#39;React&amp;#39;
+
+export default class OldReactComponent extends Componet{
+    static defaultProps={}
+    static propTypes={}
+    constructor(props){
+        super(props)
+    }
+    state={}
+    static getDerivedStateFromProps(props,state){}
+    render(){
+        return null
+    }
+    componentDidMount(){}
+    componentShouldUpdate(nextProps,nextState){
+        return true
+    }
+    getSnapshotBeforeUpdate(prevProps, prevState){}
+    componentDidUpdate(){}
+    componentWillUnmount(){}
+}&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h2&gt;总结&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;React新的生命周期新增&lt;code class=&quot;language-text&quot;&gt;static getDerivedStateFromProps&lt;/code&gt;、&lt;code class=&quot;language-text&quot;&gt;getSnapshotBeforeUpdate&lt;/code&gt;并弃用&lt;code class=&quot;language-text&quot;&gt;componentWillMount&lt;/code&gt;，&lt;code class=&quot;language-text&quot;&gt;componentWillReceiveProps&lt;/code&gt;，&lt;code class=&quot;language-text&quot;&gt;componetWillUpdate&lt;/code&gt;（这三个函数将在 React 17中删除）。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;新增&lt;code class=&quot;language-text&quot;&gt;static getDerivedStateFromError&lt;/code&gt;捕获“render”阶段的错误。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2&gt;参考&lt;/h2&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;a href=&quot;https://segmentfault.com/a/1190000017175195&quot;&gt;帮你理清React的生命周期&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;a href=&quot;https://segmentfault.com/a/1190000016617400&quot;&gt;React-新的生命周期（React16版本）&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;a href=&quot;https://zhuanlan.zhihu.com/p/38030418&quot;&gt;React v16.3之后的组件生命周期函数&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;</content:encoded></item><item><title><![CDATA[使用Gatsby.js快速搭建静态博客并通过Travis CI轻松实现自动构建]]></title><description><![CDATA[前言：之前用 Hexo…]]></description><link>https://zenghongtu.com/使用Gatsby.js快速搭建静态博客并通过Travis CI轻松实现自动构建/</link><guid isPermaLink="false">https://zenghongtu.com/使用Gatsby.js快速搭建静态博客并通过Travis CI轻松实现自动构建/</guid><pubDate>Mon, 18 Feb 2019 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;前言：之前用 Hexo 搭建的博客，稀稀散散的写一些时间，后来就懒了没有坚持下来，中断了足足一年没写了。这几天心血来潮，决定重新搭建一个，一是监督自己完成制定的计划（每周一篇，每月五篇文章），二是与各位老铁分享学习心得，三则是建立自己的知识体系，毕竟好记性不如烂笔头嘛。昨天花了一天多的时间完成了现在这个博客的模样，为什么搭个博客要花这么久，因为这里面涉及到了一些我之前没有接触过的技术，比如GraphQL、Travis CI，我都有认真的去学习了一下，还有就是把之前在 Hexo 上的几篇修改了一下添加到现在这个博客中了。接下来进入主题。&lt;/p&gt;
 &lt;h2&gt;主题安装&lt;/h2&gt;
 &lt;p&gt;为什么是主题安装呢？
 因为这个主题已经帮我们打包搞定了我们需要的包括了分类、分页等等功能，直接安装它即可&lt;/p&gt;
