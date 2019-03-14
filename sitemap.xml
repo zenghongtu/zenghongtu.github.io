@@ -1,15 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:news="http://www.google.com/schemas/sitemap-news/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:mobile="http://www.google.com/schemas/sitemap-mobile/1.0" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1" xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">
+<url> <loc>https://zenghongtu.com/category/思考/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://zenghongtu.com/category/前端监控/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://zenghongtu.com/category/react/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://zenghongtu.com/category/撸羊毛/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://zenghongtu.com/category/gatsby/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
-<url> <loc>https://zenghongtu.com/category/思考/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://zenghongtu.com/category/爬虫/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://zenghongtu.com/category/git/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://zenghongtu.com/category/docker/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://zenghongtu.com/category/pil/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://zenghongtu.com/category/ss/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://zenghongtu.com/2019-03-14--30行代码实现一个带并发数限制的xhr请求函数/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://zenghongtu.com/可能是最全一篇的前端异常监控总结/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://zenghongtu.com/通过React-use来学习如何利用hook造轮子/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://zenghongtu.com/国内信用卡撸AWS免费一年服务器，快速搭建SS/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
