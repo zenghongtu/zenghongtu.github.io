@@ -16,7 +16,7 @@ jobs:
           token: ${{ secrets.GH_TOKEN }}
 
           # Options
-          filename: metrics.svg
+          filename: public/metrics.svg
           user: zenghongtu
           base: header, activity, repositories, metadata
           config_timezone: Asia/Shanghai
@@ -43,5 +43,5 @@ jobs:
           plugin_achievements_threshold: C
           plugin_isocalendar: yes
           plugin_isocalendar_duration: half-year
-          # repositories_skipped: 
+          # repositories_skipped:
           use_prebuilt_image: yes
