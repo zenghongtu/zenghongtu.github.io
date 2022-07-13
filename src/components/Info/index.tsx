@@ -1,4 +1,3 @@
-import avatar from './avatar.png';
 import './index.css';
 
 const index = () => {
@@ -7,7 +6,10 @@ const index = () => {
       <div className="content">
         <div className="avatar-header">
           <a href="/">
-            <img className="avatar" src={avatar} />
+            <img
+              className="avatar"
+              src="https://avatars.githubusercontent.com/u/25629121?v=4"
+            />
           </a>
           <div>
             <h1 className="name">Jason Zeng</h1>
