@@ -1,14 +1,15 @@
-.py-10 {
-  padding-top: 2.5rem;
-  padding-bottom: 2.5rem;
-}
-.px-7 {
-  padding-left: 1.75rem;
-  padding-right: 1.75rem;
+.py-40 {
+  padding-top: 40px;
+  padding-bottom: 40px;
 }
 
-.mb-8 {
-  margin-bottom: 2rem;
+.px-28 {
+  padding-left: 28px;
+  padding-right: 28px;
+}
+
+.mb-16 {
+  margin-bottom: 16px;
 }
 
 .m-auto {
@@ -23,9 +24,26 @@
 
 .name {
   color: #000;
-  font-weight: 800;
+  font-weight: 500;
   font-size: 2.25em;
   margin-top: 0;
-  margin-bottom: 0.8888889em;
-  line-height: 1.1111111;
+  line-height: 1;
+}
+
+.gist-iframe {
+  border: 0;
+  width: 500px;
+  height: 180px;
+  overflow: hidden;
+}
+
+.link {
+  color: rgba(0, 0, 0, 0.8);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(125, 125, 125, 0.3);
+  transition: 0.2s linear;
+}
+
+.link:hover {
+  border-bottom: 1px solid #555;
 }
