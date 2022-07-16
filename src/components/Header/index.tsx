@@ -6,10 +6,7 @@ const index = () => {
     <div>
       <Link className="avatar-header mt-40" to="/">
         <a>
-          <img
-            className="avatar"
-            src="https://avatars.githubusercontent.com/u/25629121?v=4"
-          />
+          <img className="avatar" src="/avatar.png" />
         </a>
         <div>
           <h1 className="name">Jason Zeng</h1>
