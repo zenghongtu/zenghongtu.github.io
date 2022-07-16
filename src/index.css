@@ -15,7 +15,8 @@ html.dark {
 }
 
 html {
-  overflow: scroll;
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 
 * {
@@ -39,21 +40,6 @@ html {
 }
 ::-webkit-scrollbar-thumb:hover {
   background: var(--c-scrollbar-hover);
-}
-
-h2 + p > em:first-child {
-  opacity: 0.5;
-  display: block;
-  margin-top: -20px;
-  font-size: 0.9em;
-}
-
-.dark [img-light] {
-  display: none;
-}
-
-html:not(.dark) [img-dark] {
-  display: none;
 }
 
 *,

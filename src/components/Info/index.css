@@ -1,0 +1,14 @@
+.gist-iframe {
+  border: 0;
+  max-width: 100%;
+  width: 500px;
+  margin: 0 auto;
+  height: 180px;
+  overflow: hidden;
+}
+
+.gist-iframe > iframe {
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+}

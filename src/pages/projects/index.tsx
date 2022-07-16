@@ -17,6 +17,7 @@ const index = () => {
             return (
               <a href={url} target="_blank" key={url}>
                 <img
+                  width="100%"
                   title={url}
                   src={`https://github-readme-stats.vercel.app/api/pin/?username=${username}&repo=${repo}`}
                 ></img>

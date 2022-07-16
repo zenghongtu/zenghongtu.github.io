@@ -17,13 +17,6 @@
   line-height: 1;
 }
 
-.gist-iframe {
-  border: 0;
-  width: 500px;
-  height: 180px;
-  overflow: hidden;
-}
-
 .link {
   color: rgba(0, 0, 0, 0.8);
   text-decoration: none;
