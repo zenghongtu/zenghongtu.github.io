@@ -1,33 +1,7 @@
-import './index.css';
-
 const index = () => {
   return (
     <div className="px-28 py-40">
       <div className="content">
-        <div className="avatar-header">
-          <a href="/">
-            <img
-              className="avatar"
-              src="https://avatars.githubusercontent.com/u/25629121?v=4"
-            />
-          </a>
-          <div>
-            <h1 className="name">Jason Zeng</h1>
-          </div>
-        </div>
-        <p className="py-40">
-          <a className="link" href="https://github.com/zenghongtu">
-            GitHub
-          </a>
-          {' · '}
-          <a className="link" href="https://blog.jasonzeng.dev">
-            Blog
-          </a>
-          {' · '}
-          <a className="link" href="https://blog.jasonzeng.dev/projects">
-            Projects
-          </a>
-        </p>
         <details className="mb-16">
           <summary style={{ cursor: 'pointer', userSelect: 'none' }}>
             Metrics

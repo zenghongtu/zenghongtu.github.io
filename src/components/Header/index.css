@@ -1,19 +1,6 @@
-.py-40 {
-  padding-top: 40px;
-  padding-bottom: 40px;
-}
-
-.px-28 {
-  padding-left: 28px;
-  padding-right: 28px;
-}
-
-.mb-16 {
-  margin-bottom: 16px;
-}
-
-.m-auto {
-  margin: auto;
+.avatar-header {
+  display: block;
+  text-decoration: none;
 }
 
 .avatar {

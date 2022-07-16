@@ -137,7 +137,7 @@ const index = () => {
   }, []);
 
   return (
-    <div className="App">
+    <div>
       <canvas
         ref={canvasRef}
         width="400"
