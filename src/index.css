@@ -15,8 +15,7 @@ html.dark {
 }
 
 html {
-  overflow-y: auto;
-  overflow-x: hidden;
+  overflow: scroll;
 }
 
 * {

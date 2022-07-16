@@ -4,7 +4,7 @@ const index = () => {
   return (
     <div className="px-28 py-40">
       <div className="content">
-        <details className="mb-16">
+        <details className="mb-16 metrics">
           <summary style={{ cursor: 'pointer', userSelect: 'none' }}>
             Metrics
           </summary>

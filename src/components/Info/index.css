@@ -1,3 +1,8 @@
+.metrics {
+  max-width: 500px;
+  margin: auto;
+}
+
 .gist-iframe {
   border: 0;
   max-width: 100%;
